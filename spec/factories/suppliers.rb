@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :supplier do
-    name { FFaker::Company.name }
-    document { FFaker::IdentificationBR.cnpj }
+    sequence(:name) { |n| "#{FFaker::Company.name} #{n}" }
+    sequence(:document) { |n| "#{FFaker::IdentificationBR.cnpj} #{n}" }
   end
 end

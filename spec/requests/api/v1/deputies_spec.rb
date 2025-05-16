@@ -28,7 +28,7 @@ RSpec.describe "Api::V1::Deputies", type: :request do
   end
 
   describe "GET /show" do
-    let!(:deputy) { create(:deputy) }
+    let!(:deputy) { create(:deputy, :with_expenses) }
 
     it "returns http success" do
       get api_v1_deputy_path(deputy)
@@ -47,6 +47,33 @@ RSpec.describe "Api::V1::Deputies", type: :request do
       expect(json[:deputy][:image_url]).to eq(deputy.image_url)
       expect(json[:deputy][:party]).to eq(deputy.party.acronym)
       expect(json[:deputy][:state]).to eq(deputy.state)
+    end
+
+    it "returns the correct expenses" do
+      get api_v1_deputy_path(deputy)
+      expect(json[:deputy][:expenses]).to eq(deputy.expenses.map do |expense|
+        {
+          id: expense.id,
+          installment_number: expense.installment_number,
+          issue_date: expense.issue_date.to_s,
+          amount: expense.amount.to_f,
+          deduction: expense.deduction.to_f,
+          net_value: expense.net_value.to_f,
+          document_url: expense.document_url,
+          document_type: expense.document_type,
+          month: expense.month,
+          year: expense.year,
+          supplier: {
+            id: expense.supplier.id,
+            name: expense.supplier.name,
+            document: expense.supplier.document
+          },
+          category: {
+            id: expense.category.id,
+            name: expense.category.name
+          }
+        }
+      end)
     end
   end
 end

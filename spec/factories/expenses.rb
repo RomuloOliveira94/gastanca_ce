@@ -7,7 +7,6 @@ FactoryBot.define do
     amount { rand(100..5000) }
     deduction { rand(0..100) }
     net_value { amount - (amount * deduction / 100) }
-    description { FFaker::Lorem.sentence }
     year { Time.current.year }
     month { Time.current.month }
     document_type { 0 }

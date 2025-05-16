@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_16_132834) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_16_142616) do
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "deputies", force: :cascade do |t|
     t.string "name"
     t.string "integration_id"
@@ -24,7 +30,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_16_132834) do
   end
 
   create_table "expenses", force: :cascade do |t|
-    t.string "description"
     t.integer "installment_number"
     t.date "issue_date"
     t.decimal "amount", precision: 10, scale: 2
@@ -36,6 +41,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_16_132834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "supplier_id"
+    t.integer "month"
+    t.integer "year"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_expenses_on_category_id"
     t.index ["deputy_id"], name: "index_expenses_on_deputy_id"
     t.index ["supplier_id"], name: "index_expenses_on_supplier_id"
   end
@@ -54,6 +63,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_16_132834) do
   end
 
   add_foreign_key "deputies", "parties"
+  add_foreign_key "expenses", "categories"
   add_foreign_key "expenses", "deputies"
   add_foreign_key "expenses", "suppliers"
 end

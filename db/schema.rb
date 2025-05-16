@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_16_124336) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_16_124917) do
   create_table "deputies", force: :cascade do |t|
     t.string "name"
     t.string "integration_id"
@@ -18,5 +18,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_16_124336) do
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["integration_id"], name: "index_deputies_on_integration_id"
   end
+
+  create_table "expenses", force: :cascade do |t|
+    t.string "description"
+    t.integer "installment_number"
+    t.date "issue_date"
+    t.decimal "amount", precision: 10, scale: 2
+    t.decimal "deduction", precision: 10, scale: 2
+    t.decimal "net_value", precision: 10, scale: 2
+    t.text "document_url"
+    t.integer "document_type"
+    t.integer "deputy_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deputy_id"], name: "index_expenses_on_deputy_id"
+  end
+
+  add_foreign_key "expenses", "deputies"
 end

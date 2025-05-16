@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_16_124917) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_16_132027) do
   create_table "deputies", force: :cascade do |t|
     t.string "name"
     t.string "integration_id"
@@ -18,7 +18,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_16_124917) do
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "party_id"
     t.index ["integration_id"], name: "index_deputies_on_integration_id"
+    t.index ["party_id"], name: "index_deputies_on_party_id"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -36,5 +38,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_16_124917) do
     t.index ["deputy_id"], name: "index_expenses_on_deputy_id"
   end
 
+  create_table "parties", force: :cascade do |t|
+    t.string "acronym"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "deputies", "parties"
   add_foreign_key "expenses", "deputies"
 end

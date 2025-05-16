@@ -16,6 +16,14 @@ gem "thruster", require: false
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
+group :development do
+  gem "web-console"
+end
+
+group :test do
+  gem "simplecov", require: false
+end
+
 group :development, :test do
   gem "brakeman", require: false
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -26,8 +34,4 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "rubocop-rspec", require: false
   gem "shoulda-matchers"
-end
-
-group :development do
-  gem "web-console"
 end

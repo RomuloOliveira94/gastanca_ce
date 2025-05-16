@@ -4,9 +4,12 @@ RSpec.describe Expense, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:amount) }
-    it { should validate_presence_of(:issue_date) }
+    it { should validate_presence_of(:deduction) }
+    it { should validate_presence_of(:net_value) }
     it { should validate_presence_of(:deputy_id) }
-    it { should validate_numericality_of(:amount).is_greater_than(0) }
+    it { should validate_presence_of(:document_url) }
+    it { should validate_presence_of(:document_type) }
+    it { should validate_presence_of(:supplier_id) }
   end
 
   describe 'associations' do

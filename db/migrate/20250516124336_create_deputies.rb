@@ -7,5 +7,7 @@ class CreateDeputies < ActiveRecord::Migration[8.0]
       t.string :state
       t.timestamps
     end
+
+    add_index :deputies, :integration_id
   end
 end

@@ -1,4 +1,4 @@
 class Supplier < ApplicationRecord
   has_many :expenses, dependent: :destroy
-  validates_presence_of :name
+  validates :name, presence: true
 end

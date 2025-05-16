@@ -1,32 +1,21 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router";
-
-type Deputado = {
-  id: number;
-  name: string;
-  party: string;
-  uf: string;
-  image_url: string;
-};
-
+import { useQuery } from "@tanstack/react-query";
+import { fetchDeputies } from "api/deputiesApi";
 function DeputiesIndex() {
-  const [deputados, setDeputados] = useState<Deputado[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/api/v1/deputies")
-      .then((res) => res.json())
-      .then((data) => {
-        setDeputados(data);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) return <div>Carregando...</div>;
+  const { data: deputados = [], isLoading } = useQuery({
+    queryFn: fetchDeputies,
+    queryKey: ["deputies"],
+  });
 
   return (
     <div>
       <h1>Deputados</h1>
+      {!isLoading && deputados.length === 0 && (
+        <p>Nenhum deputado encontrado</p>
+      )}
+      {!isLoading && deputados.length > 0 && (
+        <p>Encontrados {deputados.length} deputados</p>
+      )}
       <ul>
         {deputados.map((dep) => (
           <Link to={`/deputies/${dep.id}`} key={dep.id}>

@@ -11,6 +11,7 @@ RSpec.describe Expense, type: :model do
 
   describe 'associations' do
     it { should belong_to(:deputy) }
+    it { should belong_to(:supplier) }
   end
 
   describe 'database columns' do

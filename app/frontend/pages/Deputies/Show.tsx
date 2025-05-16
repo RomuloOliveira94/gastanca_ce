@@ -1,10 +1,8 @@
-import { useParams } from "react-router"
+import Container from "components/Container";
+import { useParams } from "react-router";
 
 export default function DeputiesShow() {
   const { id } = useParams<{ id: string }>();
 
-  return (
-    <div>Show {id}</div>
-  )
+  return <Container>Show {id}</Container>;
 }
-

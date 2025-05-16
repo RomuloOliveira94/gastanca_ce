@@ -18,6 +18,10 @@ RSpec.describe Expense, type: :model do
     it { should belong_to(:category) }
   end
 
+  describe 'enums' do
+    it { should define_enum_for(:document_type).with_values([ :nota_fiscal, :recibo_ou_outros, :documento_emitido_no_exterior, :despesa_do_parlasul, :nota_fiscal_eletronica ]) }
+  end
+
   describe 'database columns' do
     it { should have_db_column(:installment_number).of_type(:integer) }
     it { should have_db_column(:issue_date).of_type(:date) }

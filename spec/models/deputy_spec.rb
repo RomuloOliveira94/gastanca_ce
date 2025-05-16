@@ -18,4 +18,11 @@ RSpec.describe Deputy, type: :model do
     it { should have_db_column(:cpf).of_type(:string) }
     it { should have_db_column(:state).of_type(:string) }
   end
+
+  describe '#image_url' do
+    it 'returns the correct image URL' do
+      deputy = Deputy.new(integration_id: 12345)
+      expect(deputy.image_url).to eq("http://www.camara.leg.br/internet/deputado/bandep/12345.jpg")
+    end
+  end
 end

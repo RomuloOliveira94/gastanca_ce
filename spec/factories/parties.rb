@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :party do
-    acronym { "PDT" }
+    acronym { FFaker::Lorem.words(3) }
   end
 end

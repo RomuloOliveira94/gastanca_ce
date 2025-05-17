@@ -11,16 +11,13 @@ import { darkTheme, lightTheme } from "styles/theme";
 const queryClient = new QueryClient();
 
 export default function App() {
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
 
   return (
     <ThemeProvider theme={dark ? darkTheme : lightTheme}>
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
-        <Header
-          themeMode={dark ? "dark" : "light"}
-          toggleTheme={() => setDark((prev) => !prev)}
-        />
+        <Header setDark={setDark} />
         <Routes>
           <Route path="/deputies" element={<DeputiesIndex />} />
           <Route path="/deputies/:id" element={<DeputiesShow />} />

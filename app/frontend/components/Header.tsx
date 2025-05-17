@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Container from "./layout/Container";
 import Logo from "./Logo";
+import { useState, useEffect } from "react";
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -31,33 +32,47 @@ const ThemeButton = styled.button`
   transition: color 0.2s;
 `;
 
-type HeaderProps = {
-  themeMode: "light" | "dark";
-  toggleTheme: () => void;
-};
+const Header = ({
+  setDark,
+}: {
+  setDark: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const [themeMode, setThemeMode] = useState<"light" | "dark">(
+    (localStorage.getItem("themeMode") as "light" | "dark") || "light"
+  );
 
-const Header = ({ themeMode, toggleTheme }: HeaderProps) => (
-  <HeaderContainer>
-    <NavBar>
-      <Logo />
-      <ThemeButton
-        aria-label={
-          themeMode === "light" ? "Ativar tema escuro" : "Ativar tema claro"
-        }
-        onClick={toggleTheme}
-      >
-        {themeMode === "light" ? (
-          <span role="img" aria-label="Lua">
-            🌙
-          </span>
-        ) : (
-          <span role="img" aria-label="Sol">
-            ☀️
-          </span>
-        )}
-      </ThemeButton>
-    </NavBar>
-  </HeaderContainer>
-);
+  useEffect(() => {
+    setDark(themeMode === "dark");
+    localStorage.setItem("themeMode", themeMode);
+  }, [themeMode, setDark]);
+
+  const toggleTheme = () => {
+    setThemeMode(themeMode === "light" ? "dark" : "light");
+  };
+
+  return (
+    <HeaderContainer>
+      <NavBar>
+        <Logo />
+        <ThemeButton
+          aria-label={
+            themeMode === "light" ? "Ativar tema escuro" : "Ativar tema claro"
+          }
+          onClick={toggleTheme}
+        >
+          {themeMode === "light" ? (
+            <span role="img" aria-label="Lua">
+              🌙
+            </span>
+          ) : (
+            <span role="img" aria-label="Sol">
+              ☀️
+            </span>
+          )}
+        </ThemeButton>
+      </NavBar>
+    </HeaderContainer>
+  );
+};
 
 export default Header;

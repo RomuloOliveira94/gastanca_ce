@@ -4,9 +4,9 @@ class Api::V1::DeputiesController < ApplicationController
   end
 
   def show
-    @deputy = Deputy.includes(expenses: [ :category, :supplier ]).find_by(id: params[:id])
+    @deputy = Deputy.includes(:party).find_by(id: params[:id])
 
-    if @deputy.nil?
+    unless @deputy
       render json: { error: "Deputy not found" }, status: :not_found
     end
   end

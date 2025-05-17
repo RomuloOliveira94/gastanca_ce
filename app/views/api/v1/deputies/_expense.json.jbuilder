@@ -4,8 +4,8 @@ json.amount expense.amount.to_f
 json.deduction expense.deduction.to_f
 json.net_value expense.net_value.to_f
 json.supplier do
-  json.extract! expense.supplier, :id, :name, :document
+  json.extract! expense.supplier, :name, :document
 end
 json.category do
-  json.extract! expense.category, :id, :name
+  json.extract! expense.category, :name
 end

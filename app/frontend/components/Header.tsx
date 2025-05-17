@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Container from "./Container";
+import Container from "./layout/Container";
 import Logo from "./Logo";
 
 const HeaderContainer = styled.header`
@@ -13,19 +13,11 @@ const HeaderContainer = styled.header`
     theme.mode === "dark" && "1px solid rgba(255, 255, 255, 0.1)"};
 `;
 
-const NavBar = styled.nav`
+const NavBar = styled(Container)`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 80rem;
-  margin: 0 auto;
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
-  }
 `;
 
 const ThemeButton = styled.button`
@@ -46,27 +38,25 @@ type HeaderProps = {
 
 const Header = ({ themeMode, toggleTheme }: HeaderProps) => (
   <HeaderContainer>
-    <Container>
-      <NavBar>
-        <Logo />
-        <ThemeButton
-          aria-label={
-            themeMode === "light" ? "Ativar tema escuro" : "Ativar tema claro"
-          }
-          onClick={toggleTheme}
-        >
-          {themeMode === "light" ? (
-            <span role="img" aria-label="Lua">
-              🌙
-            </span>
-          ) : (
-            <span role="img" aria-label="Sol">
-              ☀️
-            </span>
-          )}
-        </ThemeButton>
-      </NavBar>
-    </Container>
+    <NavBar>
+      <Logo />
+      <ThemeButton
+        aria-label={
+          themeMode === "light" ? "Ativar tema escuro" : "Ativar tema claro"
+        }
+        onClick={toggleTheme}
+      >
+        {themeMode === "light" ? (
+          <span role="img" aria-label="Lua">
+            🌙
+          </span>
+        ) : (
+          <span role="img" aria-label="Sol">
+            ☀️
+          </span>
+        )}
+      </ThemeButton>
+    </NavBar>
   </HeaderContainer>
 );
 

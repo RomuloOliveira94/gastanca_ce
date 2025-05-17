@@ -2,7 +2,7 @@ type Deputado = {
   id: number;
   name: string;
   party: string;
-  uf: string;
+  state: string;
   image_url: string;
 };
 

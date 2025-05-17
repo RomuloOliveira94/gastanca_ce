@@ -19,17 +19,19 @@ const Icon = styled.div`
   align-items: center;
 `;
 
-const Text = styled.span<{ color: string }>`
+const Text = styled.span<{
+  color: "primary" | "secondary" | "background" | "text";
+}>`
   font-size: 32px;
-  color: ${({ color }) => color};
+  color: ${({ theme, color }) => theme.colors[color]};
   margin-left: 4px;
 `;
 
 const Logo = () => (
   <LogoWrapper>
     <Icon>$</Icon>
-    <Text color="#f39c12">Gastança</Text>
-    <Text color="#3498db">CE</Text>
+    <Text color="secondary">Gastança</Text>
+    <Text color="primary">CE</Text>
   </LogoWrapper>
 );
 

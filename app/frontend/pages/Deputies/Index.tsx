@@ -16,10 +16,10 @@ function DeputiesIndex() {
 
   return (
     <Container>
-      <Grid gap="24px">
+      <Grid gap="16px" margin="24px 0">
         <Grid gap="6px">
           <h1
-            style={{ fontSize: "24px", marginTop: "16px", textAlign: "center" }}
+            style={{ fontSize: "24px", textAlign: "center" }}
           >
             🔍 Acompanhe a farra dos gastos dos nossos representantes!
           </h1>
@@ -43,7 +43,7 @@ function DeputiesIndex() {
           ))}
         </Grid>
       </Grid>
-      {isLoading && <Skeleton width="50%" height="100%" />}
+      {isLoading && <Skeleton width="100%" height="1000px" />}
       {!isLoading && deputados.length === 0 && (
         <p>Nenhum deputado encontrado</p>
       )}

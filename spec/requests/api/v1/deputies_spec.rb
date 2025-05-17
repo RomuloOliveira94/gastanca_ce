@@ -42,16 +42,16 @@ RSpec.describe "Api::V1::Deputies", type: :request do
 
     it "returns the correct deputy" do
       get api_v1_deputy_path(deputy)
-      expect(json[:deputy][:id]).to eq(deputy.id)
-      expect(json[:deputy][:name]).to eq(deputy.name)
-      expect(json[:deputy][:image_url]).to eq(deputy.image_url)
-      expect(json[:deputy][:party]).to eq(deputy.party.acronym)
-      expect(json[:deputy][:state]).to eq(deputy.state)
+      expect(json[:id]).to eq(deputy.id)
+      expect(json[:name]).to eq(deputy.name)
+      expect(json[:image_url]).to eq(deputy.image_url)
+      expect(json[:party]).to eq(deputy.party.acronym)
+      expect(json[:state]).to eq(deputy.state)
     end
 
     it "returns the correct expenses" do
       get api_v1_deputy_path(deputy)
-      expect(json[:deputy][:expenses]).to eq(deputy.expenses.map do |expense|
+      expect(json[:expenses]).to eq(deputy.expenses.map do |expense|
         {
           id: expense.id,
           installment_number: expense.installment_number,

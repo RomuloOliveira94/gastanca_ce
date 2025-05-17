@@ -91,9 +91,9 @@ RSpec.describe "Api::V1::Deputies", type: :request do
 
     it "returns the correct most expensive expense" do
       get api_v1_deputy_path(deputy)
-      most_expensive = deputy.most_expensive_expense
+      most_expensive = deputy.highest_expense
 
-      expect(json[:most_expensive_expense]).to eq(expense_expected_hash(most_expensive))
+      expect(json[:highest_expense]).to eq(expense_expected_hash(most_expensive))
     end
   end
 

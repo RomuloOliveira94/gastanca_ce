@@ -24,7 +24,7 @@ class Deputy < ApplicationRecord
                                 .transform_values { |exps| exps.sum(&:net_value) }
   end
 
-  def most_expensive_expense
+  def highest_expense
     expenses.order(net_value: :desc).first
   end
 

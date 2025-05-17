@@ -60,9 +60,9 @@ RSpec.describe Deputy, type: :model do
     end
   end
 
-  describe "#most_expensive_expense" do
+  describe "#highest_expense" do
     it "returns the expense with the highest net_value" do
-      expect(deputy.most_expensive_expense.net_value).to eq(300.0)
+      expect(deputy.highest_expense.net_value).to eq(300.0)
     end
   end
 

@@ -4,6 +4,9 @@ export const formatCurrency = (value: number) => {
 
 export const formatBRDate = (date: Date | string) => {
   const d = typeof date === "string" ? new Date(date) : date;
+  if (isNaN(d.getTime())) {
+    return "Sem data";
+  }
   return d.toLocaleDateString("pt-BR");
 };
 

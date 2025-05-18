@@ -17,6 +17,12 @@ const Icon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 720px) {
+    font-size: 28px;
+    width: 36px;
+    height: 36px;
+  }
 `;
 
 const Text = styled.span<{
@@ -25,14 +31,20 @@ const Text = styled.span<{
   font-size: 32px;
   color: ${({ theme, color }) => theme.colors[color]};
   margin-left: 4px;
+
+  @media (max-width: 720px) {
+    font-size: 24px;
+  }
 `;
 
-const Logo = () => (
-  <LogoWrapper>
-    <Icon>$</Icon>
-    <Text color="secondary">Gastança</Text>
-    <Text color="primary">CE</Text>
-  </LogoWrapper>
-);
+const Logo = () => {
+  return (
+    <LogoWrapper>
+      <Icon>$</Icon>
+      <Text color="secondary">Gastança</Text>
+      <Text color="primary">CE</Text>
+    </LogoWrapper>
+  );
+};
 
 export default Logo;

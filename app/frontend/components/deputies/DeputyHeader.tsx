@@ -1,14 +1,9 @@
+import { Deputy } from "api/types";
 import Flex from "components/layout/Flex";
-import React from "react";
 import styled from "styled-components";
 
-type DeputyHeaderProps = {
-  photoUrl: string | undefined;
-  name: string | undefined;
-  party: string | undefined;
-  state: string | undefined;
-  year: number | undefined;
-};
+interface DeputyHeaderProps
+  extends Pick<Deputy, "image_url" | "name" | "party" | "state"> {}
 
 const HeaderContainer = styled(Flex)`
   background: ${({ theme }) => theme.colors.background};
@@ -19,8 +14,10 @@ const HeaderContainer = styled(Flex)`
   box-shadow: ${({ theme }) =>
     theme.mode === "light" && "0 4px 12px rgba(0, 0, 0, 0.034)"};
   border: ${({ theme }) =>
-    theme.mode === "dark" ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid rgba(0, 0, 0, 0.1)"};
-  margin: 32px 0;
+    theme.mode === "dark"
+      ? "1px solid rgba(255, 255, 255, 0.1)"
+      : "1px solid rgba(0, 0, 0, 0.1)"};
+  margin-top: 32px;
 
   @media (max-width: 700px) {
     flex-direction: column;
@@ -77,32 +74,29 @@ const Details = styled(Flex)`
 
 const Chip = styled.span<{
   bg: "primary" | "secondary" | "background" | "text";
+  fontSize?: string;
 }>`
   background: ${({ bg, theme }) => theme.colors[bg]};
   color: #fff;
   font-weight: 600;
-  font-size: 18px;
+  font-size: ${({ fontSize }) => fontSize || "18px"};
   border-radius: 16px;
   padding: 4px 16px;
 `;
 
-const DeputyHeader = ({
-  photoUrl,
-  name,
-  party,
-  state,
-  year,
-}: DeputyHeaderProps) => (
+const DeputyHeader = ({ image_url, name, party, state }: DeputyHeaderProps) => (
   <HeaderContainer>
-    <Photo src={photoUrl} alt={name} />
+    <Photo src={image_url} alt={name} />
     <Info>
       <Name>{name}</Name>
       <Details>
         <Chip bg="primary">{party}</Chip>
         <Chip bg="secondary">{state}</Chip>
-        <Chip bg="secondary">{year}</Chip>
       </Details>
     </Info>
+    <Chip fontSize="24px" style={{ alignSelf: "flex-start" }} bg="secondary">
+      2023
+    </Chip>
   </HeaderContainer>
 );
 

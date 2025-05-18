@@ -66,7 +66,10 @@ const DeputyExpensesChart = ({ monthly_expenses }: DeputyChartProps) => {
             fontSize={isMobile ? "12px" : "14px"}
             tickFormatter={(value) => formatCurrency(value).replace(/,00$/, "")}
           />
-          <Tooltip formatter={formatCurrency} />
+          <Tooltip
+            contentStyle={{ background: theme.colors.background }}
+            formatter={formatCurrency}
+          />
           <Bar
             dataKey="Total"
             barSize={64}

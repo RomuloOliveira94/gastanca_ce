@@ -19,9 +19,9 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <Header setDark={setDark} />
         <Routes>
-          <Route path="/deputies" element={<DeputiesIndex />} />
-          <Route path="/deputies/:id" element={<DeputiesShow />} />
-          <Route path="/" element={<Navigate to="/deputies" />} />
+          <Route path="/deputados" element={<DeputiesIndex />} />
+          <Route path="/deputados/:id" element={<DeputiesShow />} />
+          <Route path="/*" element={<Navigate to="/deputados" />} />
         </Routes>
       </QueryClientProvider>
     </ThemeProvider>

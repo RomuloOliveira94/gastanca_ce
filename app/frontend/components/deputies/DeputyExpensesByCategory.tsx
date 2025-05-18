@@ -10,6 +10,13 @@ const List = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+  border-radius: 16px;
+  box-shadow: ${({ theme }) =>
+    theme.mode === "light" && "0 4px 12px rgba(0, 0, 0, 0.034)"};
+  border: ${({ theme }) =>
+    theme.mode === "dark"
+      ? "1px solid rgba(255, 255, 255, 0.1)"
+      : "1px solid rgba(0, 0, 0, 0.1)"};
 `;
 
 const ListItem = styled.li`

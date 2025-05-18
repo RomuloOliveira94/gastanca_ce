@@ -125,7 +125,7 @@ const DeputyExpensesSummary = ({
             <div>
               {`Fornecedor: ${highest_expense.supplier.name}
               Data: ${formatBRDate(highest_expense.issue_date)}
-              Tipo: ${getDocumentType(highest_expense.document_type)}
+              Tipo: ${highest_expense.category.name}
               Valor bruto: ${formatCurrency(highest_expense.amount)}`}
             </div>
             <DocumentButton

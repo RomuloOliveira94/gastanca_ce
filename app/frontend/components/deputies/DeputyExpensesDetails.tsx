@@ -3,7 +3,7 @@ import Flex from "components/layout/Flex";
 import Grid from "components/layout/Grid";
 import { useState } from "react";
 import styled from "styled-components";
-import { formatBRDate, getDocumentType } from "utils";
+import { formatBRDate, formatCurrency, getDocumentType } from "utils";
 
 interface DeputyExpensesDetailsProps extends Pick<Deputy, "monthly_expenses"> {}
 
@@ -29,16 +29,18 @@ const AccordionHeader = styled(Flex)`
 const AccordionContent = styled.div`
   padding: 16px;
   background: ${({ theme }) => theme.colors.background};
+  display: grid;
+  gap: 16px;
 `;
 
 const ExpenseItem = styled.div`
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 `;
 
 const DocumentButton = styled.a<{ disabled?: boolean }>`
-  margin-top: 8px;
+  margin-top: 6px;
   padding: 6px 16px;
   background: ${({ theme }) => theme.colors.primary};
   color: #fff;
@@ -46,6 +48,7 @@ const DocumentButton = styled.a<{ disabled?: boolean }>`
   border-radius: 6px;
   font-size: 0.98rem;
   text-decoration: none;
+  max-width: fit-content;
   cursor: pointer;
   transition: background 0.2s;
   width: 100%;
@@ -89,12 +92,10 @@ export default function DeputyExpensesDetails({
             <AccordionContent>
               {expenses.map((expense) => (
                 <ExpenseItem key={expense.id}>
-                  <strong>{expense.category.name}</strong> —{" "}
-                  {expense.net_value.toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  })}
-                  <br />
+                  <Flex>
+                    <strong>{expense.category.name}</strong> —{" "}
+                    <strong>{formatCurrency(expense.net_value)}</strong>
+                  </Flex>
                   Fornecedor: {expense.supplier.name}{" "}
                   {expense.supplier.document
                     ? `(${expense.supplier.document})`

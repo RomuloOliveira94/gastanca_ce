@@ -78,7 +78,7 @@ jobs:
         run: bundle install
 
       - name: Prepare SQLite database
-        run: bin/rails db:setup
+        run: bin/rails db:create db:migrate
 
       - name: Precompile assets
         run: bin/rails assets:precompile

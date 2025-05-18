@@ -1,10 +1,4 @@
-import React from "react";
 import styled from "styled-components";
-
-interface ContainerProps {
-  children: React.ReactNode;
-  className?: string;
-}
 
 const Container = styled.div`
   box-sizing: border-box;

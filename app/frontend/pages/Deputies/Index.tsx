@@ -18,23 +18,37 @@ function DeputiesIndex() {
     <Container>
       <Grid gap="16px" margin="24px 0">
         <Grid gap="6px">
-          <h1
-            style={{ fontSize: "24px", textAlign: "center" }}
-          >
+          <h1 style={{ fontSize: "24px", textAlign: "center" }}>
             🔍 Acompanhe a farra dos gastos dos nossos representantes!
           </h1>
-          <p style={{ color: "#7f8c8d", textAlign: "center" }}>
+          <p
+            style={{
+              color: "#7f8c8d",
+              whiteSpace: "wrap",
+              textAlign: "center",
+            }}
+          >
+            Revise os dados sobre as despesas cobertas pela Cota para Exercício
+            da Atividade Parlamentar de cada deputado.
+            <br />
             No GastançaCE, você descobre quem são os deputados do Ceará e como
             anda o uso do dinheiro público.
+            <br />
+            <br />
+            ISSO ELES GASTAM FORA O SALÁRIO! É MOLE?
           </p>
         </Grid>
-        <Grid as="ul" columns="repeat(auto-fill, minmax(220px, 1fr))" gap="12px">
+        <Grid
+          as="ul"
+          columns="repeat(auto-fill, minmax(220px, 1fr))"
+          gap="12px"
+        >
           {deputados.map((dep) => (
-            <Link to={`/deputies/${dep.id}`} key={dep.id}>
+            <Link to={`/deputados/${dep.id}`} key={dep.id}>
               <li>
                 <DeputyCard
                   name={dep.name}
-                  photo={dep.image_url}
+                  image_url={dep.image_url}
                   party={dep.party}
                   state={dep.state}
                 />

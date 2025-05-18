@@ -28,3 +28,9 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+require "capybara/rails"
+require "capybara/rspec"
+
+Capybara.server = :puma, { Silent: true }
+Capybara.default_max_wait_time = 5

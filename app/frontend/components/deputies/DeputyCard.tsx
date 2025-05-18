@@ -1,4 +1,8 @@
+import { Deputy } from "api/types";
 import styled from "styled-components";
+
+interface DeputyCardProps
+  extends Pick<Deputy, "image_url" | "name" | "party" | "state"> {}
 
 const Card = styled.div`
   background: ${({ theme }) => theme.colors.background};
@@ -20,7 +24,10 @@ const Card = styled.div`
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-    background-color: #f0f0f0;
+    background-color: ${({ theme }) =>
+      theme.mode === "dark"
+        ? "rgba(255, 255, 255, 0.1)"
+        : "rgba(0, 0, 0, 0.05)"};
   }
 `;
 
@@ -49,17 +56,10 @@ const Chip = styled.span<{
   margin-top: 6px;
 `;
 
-type Props = {
-  name: string;
-  photo: string;
-  party: string;
-  state: string;
-};
-
-const DeputyCard = ({ name, photo, party, state }: Props) => {
+const DeputyCard = ({ name, image_url, party, state }: DeputyCardProps) => {
   return (
     <Card>
-      <Photo src={photo} alt={`Foto de ${name}`} />
+      <Photo src={image_url} alt={`Foto de ${name}`} />
       <Name>{name.split(" ").slice(0, 2).join(" ")}</Name>
       <Chip bg="primary">
         {party} - {state}

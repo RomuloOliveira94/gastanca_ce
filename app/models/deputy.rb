@@ -8,7 +8,7 @@ class Deputy < ApplicationRecord
   end
 
   def monthly_expenses
-    expenses.includes(:category, :supplier).order(:month).group_by { |e| Expense::MONTHS_PT_BR[e.month] }
+    expenses.includes(:category, :supplier).order(:month).group_by { |e| I18n.l(Date.new(2024, e.month, 1), format: "%B") }
   end
 
   def total_monthly_expenses

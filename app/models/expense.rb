@@ -1,20 +1,4 @@
 class Expense < ApplicationRecord
-  MONTHS_PT_BR = [
-    nil,
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro"
-  ].freeze
-
   belongs_to :deputy
   belongs_to :supplier
   belongs_to :category

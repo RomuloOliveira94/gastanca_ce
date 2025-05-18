@@ -7,24 +7,6 @@ const LogoWrapper = styled.div`
   font-weight: bold;
 `;
 
-const Icon = styled.div`
-  background: #2ecc71;
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 720px) {
-    font-size: 28px;
-    width: 36px;
-    height: 36px;
-  }
-`;
-
 const Text = styled.span<{
   color: "primary" | "secondary" | "background" | "text";
 }>`
@@ -40,7 +22,7 @@ const Text = styled.span<{
 const Logo = () => {
   return (
     <LogoWrapper>
-      <Icon>$</Icon>
+      <img src="/icon.png" alt="Logo" width={40} height={40} />
       <Text color="secondary">Gastança</Text>
       <Text color="primary">CE</Text>
     </LogoWrapper>

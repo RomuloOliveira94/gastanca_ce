@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { Deputy } from "api/types";
 import { formatCurrency } from "utils";
 import useIsMobile from "hooks/UseIsMobile";
+import Grid from "components/layout/Grid";
 
 interface DeputyChartProps extends Pick<Deputy, "monthly_expenses"> {}
 
@@ -49,38 +50,43 @@ const DeputyExpensesChart = ({ monthly_expenses }: DeputyChartProps) => {
   const theme = useTheme();
 
   return (
-    <ChartContainer>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          margin={{
-            top: isMobile ? 18 : 30,
-            right: 30,
-            left: 30,
-            bottom: isMobile ? 18 : 30,
-          }}
-        >
-          <CartesianGrid vertical={false} />
-          <XAxis dataKey="name" hide={isMobile} />
-          <YAxis
-            fontSize={isMobile ? "12px" : "14px"}
-            tickFormatter={(value) => formatCurrency(value).replace(/,00$/, "")}
-          />
-          <Tooltip
-            contentStyle={{ background: theme.colors.background }}
-            formatter={formatCurrency}
-          />
-          <Bar
-            dataKey="Total"
-            barSize={64}
-            fill={theme.colors.primary}
-            activeBar={
-              <Rectangle fill={theme.colors.secondary} stroke={"#fff"} />
-            }
-          />
-        </BarChart>
-      </ResponsiveContainer>
-    </ChartContainer>
+    <Grid gap="16px">
+      <h2>Gráfico de Gastos</h2>
+      <ChartContainer>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={data}
+            margin={{
+              top: isMobile ? 18 : 30,
+              right: 30,
+              left: 30,
+              bottom: isMobile ? 18 : 30,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis dataKey="name" hide={isMobile} />
+            <YAxis
+              fontSize={isMobile ? "12px" : "14px"}
+              tickFormatter={(value) =>
+                formatCurrency(value).replace(/,00$/, "")
+              }
+            />
+            <Tooltip
+              contentStyle={{ background: theme.colors.background }}
+              formatter={formatCurrency}
+            />
+            <Bar
+              dataKey="Total"
+              barSize={64}
+              fill={theme.colors.primary}
+              activeBar={
+                <Rectangle fill={theme.colors.secondary} stroke={"#fff"} />
+              }
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </ChartContainer>
+    </Grid>
   );
 };
 

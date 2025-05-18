@@ -1,30 +1,11 @@
+import { Deputy } from "api/types";
+import Flex from "components/layout/Flex";
+import Grid from "components/layout/Grid";
 import { useState } from "react";
 import styled from "styled-components";
 import { formatBRDate, getDocumentType } from "utils";
 
-type Expense = {
-  id: number;
-  installment_number: number;
-  document_url: string;
-  document_type: string;
-  month: number;
-  year: number;
-  issue_date: string;
-  amount: number;
-  deduction: number;
-  net_value: number;
-  supplier: { name: string; document: string };
-  category: { name: string };
-};
-
-type MonthlyExpenses = {
-  month: string;
-  expenses: Expense[];
-};
-
-interface Props {
-  monthly_expenses: MonthlyExpenses[];
-}
+interface DeputyExpensesDetailsProps extends Pick<Deputy, "monthly_expenses"> {}
 
 const Accordion = styled.div`
   margin-bottom: 16px;
@@ -33,7 +14,7 @@ const Accordion = styled.div`
   background: ${({ theme }) => theme.colors.background};
 `;
 
-const AccordionHeader = styled.button`
+const AccordionHeader = styled(Flex)`
   width: 100%;
   background: ${({ theme }) => theme.colors.primary};
   color: #fff;
@@ -57,8 +38,7 @@ const ExpenseItem = styled.div`
 `;
 
 const DocumentButton = styled.a<{ disabled?: boolean }>`
-  display: inline-block;
-  margin-top: 6px;
+  margin-top: 8px;
   padding: 6px 16px;
   background: ${({ theme }) => theme.colors.primary};
   color: #fff;
@@ -68,6 +48,7 @@ const DocumentButton = styled.a<{ disabled?: boolean }>`
   text-decoration: none;
   cursor: pointer;
   transition: background 0.2s;
+  width: 100%;
 
   ${({ disabled }) =>
     disabled &&
@@ -88,17 +69,21 @@ const DocumentButton = styled.a<{ disabled?: boolean }>`
   }
 `;
 
-export default function DeputyExpensesDetails({ monthly_expenses }: Props) {
+export default function DeputyExpensesDetails({
+  monthly_expenses,
+}: DeputyExpensesDetailsProps) {
   const [openMonth, setOpenMonth] = useState<string | null>(null);
 
   return (
-    <div>
+    <Grid gap="8px">
+      <h2>Detalhes das Despesas</h2>
       {monthly_expenses.map(({ month, expenses }) => (
         <Accordion key={month}>
           <AccordionHeader
             onClick={() => setOpenMonth(openMonth === month ? null : month)}
           >
             {month} ({expenses.length} despesas)
+            <img src="/icons/arrow-down.svg" alt="ver_mais" />
           </AccordionHeader>
           {openMonth === month && (
             <AccordionContent>
@@ -120,11 +105,7 @@ export default function DeputyExpensesDetails({ monthly_expenses }: Props) {
                   Tipo: {getDocumentType(expense.document_type)}
                   <br />
                   {expense.document_url ? (
-                    <DocumentButton
-                      href={expense.document_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <DocumentButton href={expense.document_url} target="_blank">
                       Ver documento
                     </DocumentButton>
                   ) : (
@@ -138,6 +119,6 @@ export default function DeputyExpensesDetails({ monthly_expenses }: Props) {
           )}
         </Accordion>
       ))}
-    </div>
+    </Grid>
   );
 }

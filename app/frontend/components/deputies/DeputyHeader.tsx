@@ -99,7 +99,7 @@ const DeputyHeader = ({ image_url, name, party, state }: DeputyHeaderProps) => (
       </Details>
     </Info>
     <Chip fontSize="24px" bg="secondary">
-      2023
+      2024
     </Chip>
   </HeaderContainer>
 );

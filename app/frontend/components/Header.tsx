@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Container from "./layout/Container";
 import Logo from "./Logo";
 import { useState, useEffect } from "react";
+import { Link } from "react-router";
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -53,22 +54,16 @@ const Header = ({
   return (
     <HeaderContainer>
       <NavBar>
-        <Logo />
+        <Link to={"/"}>
+          <Logo />
+        </Link>
         <ThemeButton
           aria-label={
             themeMode === "light" ? "Ativar tema escuro" : "Ativar tema claro"
           }
           onClick={toggleTheme}
         >
-          {themeMode === "light" ? (
-            <span role="img" aria-label="Lua">
-              🌙
-            </span>
-          ) : (
-            <span role="img" aria-label="Sol">
-              ☀️
-            </span>
-          )}
+          {themeMode === "light" ? "🌙" : "☀️"}
         </ThemeButton>
       </NavBar>
     </HeaderContainer>

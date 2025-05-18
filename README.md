@@ -53,26 +53,50 @@ docker compose -f docker-compose.dev.yml up
 ### 3. Rodando localmente (sem Docker)
 Se você quer usar seu ambiente local Ruby/Rails:
 
-# Instale as dependências
+#### Instale as dependências
 ```bash
 bundle install
 yarn install
 ```
 
-# Crie e popule o banco de dados
+#### Crie e popule o banco de dados
 ```bash
 bin/rails db:setup
 ```
 
-# Inicie a aplicação
+#### Inicie a aplicação
 ```bash
 bin/dev
 ```
 
-## Contrtibuir
+## 🧪 Testes e CI/CD
+O projeto possui uma estrutura de testes automatizados com RSpec e outros utilitários.
 
-Sinta se livre para contribuir em qualquer feature!
+Os testes podem ser executados com:
 
-## License
+```bash
+bundle exec rspec
+```
 
-Este app tem código aberto sob os termos da [MIT License](https://opensource.org/licenses/MIT).
+Está integrado ao GitHub Actions para rodar automaticamente os testes e validações a cada push ou pull request.
+
+O pipeline de CI/CD garante que o código esteja funcionando corretamente antes de ser implantado.
+
+## 🤝 Contribuições
+
+Contribuições são muito bem-vindas! 💜
+
+Para contribuir:
+
+1. Faça um fork deste repositório
+2. Crie sua branch: `git checkout -b minha-feature`
+3. Faça suas alterações e adicione testes
+4. Execute os testes para garantir que está tudo certo
+5. Submeta um Pull Request
+
+> Sempre que possível, descreva bem sua mudança e adicione prints ou exemplos se necessário.
+
+## 📄 Licença
+Este projeto está licenciado sob os termos da MIT License.
+
+

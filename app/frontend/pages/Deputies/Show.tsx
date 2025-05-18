@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchDeputyById } from "api/deputiesApi";
 import DeputyExpensesChart from "components/deputies/DeputyExpensesChart";
+import DeputyExpensesDetails from "components/deputies/DeputyExpensesDetails";
 import DeputyExpensesSummary from "components/deputies/DeputyExpensesSummary";
 import DeputyHeader from "components/deputies/DeputyHeader";
 import Container from "components/layout/Container";
@@ -33,7 +34,7 @@ export default function DeputiesShow() {
 
   if (isLoading)
     return (
-      <Container>
+      <Container style={{ marginTop: "36px" }}>
         <Skeleton width="100%" height="1000px" />
       </Container>
     );
@@ -55,6 +56,7 @@ export default function DeputiesShow() {
           highest_expense={deputado.highest_expense}
         />
         <DeputyExpensesChart monthly_expenses={deputado.monthly_expenses} />
+        <DeputyExpensesDetails monthly_expenses={deputado.monthly_expenses} />
       </Grid>
     </Container>
   );

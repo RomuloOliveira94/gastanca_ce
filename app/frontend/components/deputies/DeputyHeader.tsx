@@ -82,6 +82,10 @@ const Chip = styled.span<{
   font-size: ${({ fontSize }) => fontSize || "18px"};
   border-radius: 16px;
   padding: 4px 16px;
+
+  @media (min-width: 700px) {
+    align-self: start;
+  }
 `;
 
 const DeputyHeader = ({ image_url, name, party, state }: DeputyHeaderProps) => (
@@ -94,7 +98,7 @@ const DeputyHeader = ({ image_url, name, party, state }: DeputyHeaderProps) => (
         <Chip bg="secondary">{state}</Chip>
       </Details>
     </Info>
-    <Chip fontSize="24px" style={{ alignSelf: "flex-start" }} bg="secondary">
+    <Chip fontSize="24px" bg="secondary">
       2023
     </Chip>
   </HeaderContainer>

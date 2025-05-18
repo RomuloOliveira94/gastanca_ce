@@ -1,4 +1,4 @@
-class Api::V1::DeputiesController < ApplicationController
+class Api::V1::DeputiesController < Api::V1::ApplicationController
   def index
     @deputies = Deputy.includes(:party).all
   end

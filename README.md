@@ -11,8 +11,6 @@ Este projeto visa promover a **transparência pública** de forma simples e aces
 
 ## 🚀 Tecnologias Utilizadas
 
-## Stack
-
 [![Icons](https://skillicons.dev/icons?i=ruby,rails,react,styledcomponents,sqlite,githubactions,docker,vscode)](https://skillicons.dev)
 
 - **Ruby on Rails 8**
